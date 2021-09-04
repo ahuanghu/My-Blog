@@ -14,6 +14,7 @@ public class MyBlogApplicationTests {
 		//测试second分支,继续开发提交,合并后提交
 		//测试分支third的开发,继续
 		//主分支修改，产生冲突
+		//测试分支third的开发,继续,再次提交
 	}
 
 }
