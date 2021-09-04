@@ -135,4 +135,26 @@ public class AdminController {
         request.getSession().removeAttribute("errorMsg");
         return "admin/login";
     }
+
+    /**
+     * 向redis中放string类型数据
+     * 和get取值,懒得写,默认取key为12的值
+     */
+    @GetMapping("/redisPut")
+    @ResponseBody
+    public String redisPut(String key,String value){
+        if (adminUserService.putRedis(key,value)){
+            return "存放成功";
+        }else {
+            return "存放失败";
+        }
+
+    }
+
+    @GetMapping("/redisGet")
+    @ResponseBody
+    public String redisGet(){
+        String value = adminUserService.getRedis();
+        return "取值成功,值为:"  + value;
+    }
 }

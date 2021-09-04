@@ -4,6 +4,8 @@ import com.site.blog.my.core.dao.AdminUserMapper;
 import com.site.blog.my.core.entity.AdminUser;
 import com.site.blog.my.core.service.AdminUserService;
 import com.site.blog.my.core.util.MD5Util;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.redis.core.StringRedisTemplate;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
@@ -60,4 +62,25 @@ public class AdminUserServiceImpl implements AdminUserService {
         }
         return false;
     }
+
+    @Autowired
+    private StringRedisTemplate redisTemplate;
+
+    @Override
+    public Boolean putRedis(String key, String value) {
+        try {
+            redisTemplate.opsForValue().set(key, value);
+            return true;
+        }catch (Exception e){
+            e.printStackTrace();
+            return false;
+        }
+    }
+
+    @Override
+    public String getRedis() {
+        return redisTemplate.opsForValue().get("12");
+    }
+
+
 }

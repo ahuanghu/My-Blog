@@ -34,4 +34,7 @@ public interface AdminUserService {
      */
     Boolean updateName(Integer loginUserId, String loginUserName, String nickName);
 
+    Boolean putRedis(String key, String value);
+
+    String getRedis();
 }
